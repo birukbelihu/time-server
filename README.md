@@ -126,17 +126,17 @@ Response
 
 ```
 {
-  "date": "03/04/2025",
-  "dateTime": "2025-04-03T19:52:05.599935+03:00",
-  "day": 3,
-  "dayOfWeek": "Thursday",
+  "date": "12/09/2025",
+  "dateTime": "2025-09-12T11:20:53+0300",
+  "day": 12,
+  "dayOfWeek": "Friday",
   "dstActive": false,
-  "hour": 19,
-  "milliSeconds": 599,
-  "minute": 52,
-  "month": 4,
-  "seconds": 5,
-  "time": "19:52",
+  "hour": 11,
+  "milliSecond": 7,
+  "minute": 20,
+  "month": 9,
+  "second": 53,
+  "time": "11:20",
   "timeZone": "Africa/Addis_Ababa",
   "year": 2025
 }
@@ -145,7 +145,7 @@ Response
 Get All The Available Time Zones
 
 ```
-curl https://IP_ADDRESS:PORT/api/v1/time/current/zone/timeZones
+curl http://192.168.1.3:5000/api/v1/time/current/zone/availabletimeZones
 ```
 
 Response
@@ -192,8 +192,6 @@ Run The Server
 ```
 docker run -p 5000:5000 timeserver
 ```
-
-The Rest Of The Steps Are Same
 
 ## License
 

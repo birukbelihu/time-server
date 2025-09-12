@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 import pytz
 from flask import Flask, redirect, url_for, request, jsonify
 
@@ -12,7 +12,7 @@ def home():
 
 @app.route("/api/v1/status")
 def health():
-    return "<h1>TimeServer Is Running...</h1>", 200
+    return jsonify({"status": "TimeServer Is Running"}), 200
 
 
 @app.route("/api/v1/time/current/zone", methods=["GET"])
@@ -32,19 +32,18 @@ def get_current_time():
         "day": current_time.day,
         "hour": current_time.hour,
         "minute": current_time.minute,
-        "seconds": current_time.second,
-        "milliSeconds": current_time.microsecond // 1000,
-        "dateTime": current_time.isoformat(),
+        "second": current_time.second,
+        "milliSecond": current_time.microsecond // 1000,
+        "dateTime": current_time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "date": current_time.strftime("%d/%m/%Y"),
         "time": current_time.strftime("%H:%M"),
         "timeZone": str(timezone),
         "dayOfWeek": current_time.strftime("%A"),
-        "dstActive": timedelta(0) != current_time.dst()
     }
     return jsonify(response)
 
 
-@app.route("/api/v1/time/current/zone/timeZones", methods=["GET"])
+@app.route("/api/v1/time/current/zone/availableTimeZones", methods=["GET"])
 def get_available_time_zones():
     return jsonify(pytz.all_timezones)
 

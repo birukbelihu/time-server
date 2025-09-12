@@ -13,7 +13,7 @@ def client():
 def test_health(client):
     response = client.get("/api/v1/status")
     assert response.status_code == 200
-    assert response.data.decode() == "<h1>TimeServer Is Running...</h1>"
+    assert response.get_json() == {"status": "TimeServer Is Running"}
 
 
 def test_time_default(client):
@@ -39,7 +39,7 @@ def test_invalid_timezone(client):
 
 
 def test_available_timezones(client):
-    response = client.get("/api/v1/time/current/zone/timeZones")
+    response = client.get("/api/v1/time/current/zone/availableTimeZones")
     data = response.get_json()
     assert response.status_code == 200
     assert "Africa/Addis_Ababa" in data
