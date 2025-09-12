@@ -1,7 +1,8 @@
-![GitHub Repo stars](https://img.shields.io/github/stars/BirukBelihu/TimeServer)
-![GitHub forks](https://img.shields.io/github/forks/BirukBelihu/TimeServer)
-![GitHub issues](https://img.shields.io/github/issues/BirukBelihu/TimeServer)
-![GitHub license](https://img.shields.io/github/license/BirukBelihu/TimeServer)
+![GitHub Repo stars](https://img.shields.io/github/stars/BirukBelihu/Cody)
+![GitHub forks](https://img.shields.io/github/forks/BirukBelihu/Cody)
+![GitHub issues](https://img.shields.io/github/issues/BirukBelihu/Cody)
+![GitHub license](https://img.shields.io/github/license/BirukBelihu/Cody)
+
 
 ## Time Server
 
@@ -36,11 +37,26 @@ TimeServer Is Live On Render
 
 To get started with Time Server on your local machine, follow these steps:
 
-Make sure you have [Git](https://git-scm.com/) and [Python](https://python.org) installed:
+## 🛠️ Prerequisites
+
+Make sure you have the following installed:
+
+- [Git](https://git-scm.com/)
 
 ```bash
 git --version
+```
+
+- [Python](https://www.python.org/)
+
+```bash
 python --version
+```
+
+- [Docker(Only If you want to run the server in docker container)](https://www.docker.com/)
+
+```bash
+docker --version
 ```
 
 Clone The Repository
@@ -55,6 +71,31 @@ Go Inside The Project
 cd TimeServer
 ```
 
+### Set up Python virtual environment(I recommend using [uv](https://github.com/astral-sh/uv) for lightning speed)
+
+### With uv
+
+```bash
+uv venv .venv
+```
+
+### With Python
+
+```bash
+python -m venv .venv
+```
+
+# Activate virtual environment
+
+```bash
+.venv\Scripts\activate # On Windows
+```
+
+```bash
+source .venv/bin/activate # On Linux, WSL & macOS
+```
+
+
 Install Required Dependencies
 
 ```
@@ -67,15 +108,15 @@ Start The Time Server
 python main.py
 ```
 
-If You're Calling The API From External Clients(Android Or Web) Don't Forget To Expose The Port Using <a href="https://ngrok.com" target="_blank">Ngrok</a>.
+If You're Calling The API From External Clients(Android Or Web) Don't Forget To Expose The Port Using [Ngrok](https://ngrok.com).
 
 ```
 ngrok http 5000
 ```
 
-<b>N.B</b> Replace 5000 With Your Own PORT If You're Using Different Port Number. 
+**N.B** Replace 5000 With Your Own PORT If You're Using Different Port Number. 
 
-Sample Request Using <b><a href="https://curl.se/" target="_blank">cURL</a></b>
+Sample Request Using **[cURL](https://curl.se/)**
 
 ```
 curl http://IP_ADDRESS:PORT/api/v1/time/current/zone?timeZone=Africa/Addis_Ababa
@@ -104,7 +145,7 @@ Response
 Get All The Available Time Zones
 
 ```
-curl http://IP_ADDRESS:PORT/api/v1/time/current/zone/timeZones
+curl https://IP_ADDRESS:PORT/api/v1/time/current/zone/timeZones
 ```
 
 Response
@@ -136,7 +177,9 @@ Run Tests Using Pytest
 pytest test_server.py
 ```
 
-To Run TimeServer In <a href="https://www.docker.com/" target="_blank">Docker</a> Container Follow This Steps.
+To Run TimeServer In [Docker](https://www.docker.com) Container Follow This Steps.
+
+
 
 Build Docker Image
 
@@ -151,11 +194,6 @@ docker run -p 5000:5000 timeserver
 ```
 
 The Rest Of The Steps Are Same
-</p>
-
-## 📢 Social Media
-
-- 📺 [YouTube: @pythondevs](https://youtube.com/@pythondevs?si=_CZxaEBwDkQEj4je)
 
 ## License
 
