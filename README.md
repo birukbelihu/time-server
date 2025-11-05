@@ -68,7 +68,7 @@ git clone https://github.com/BirukBelihu/TimeServer.git
 Go Inside The Project
 
 ```
-cd TimeServer/src
+cd time-server
 ```
 
 ### Set up Python virtual environment(I recommend using [uv](https://github.com/astral-sh/uv) for lightning speed)
@@ -100,6 +100,12 @@ Install Required Dependencies
 
 ```
 pip install -r requirements.txt
+```
+
+Go Inside The Source Folder
+
+```bash
+cd src
 ```
 
 Start The Time Server
