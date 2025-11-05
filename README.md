@@ -196,7 +196,7 @@ docker build -t timeserver .
 Run The Server
 
 ```
-docker run -p 5000:5000 timeserver
+docker run -p 8000:8000 timeserver
 ```
 
 ## License
