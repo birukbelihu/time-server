@@ -62,7 +62,7 @@ docker --version
 Clone The Repository
 
 ```
-git clone https://github.com/BirukBelihu/TimeServer.git
+git clone https://github.com/BirukBelihu/time-server.git
 ```
 
 Go Inside The Project
