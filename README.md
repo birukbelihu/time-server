@@ -117,10 +117,8 @@ python app.py
 If You're Calling The API From External Clients(Android Or Web) Don't Forget To Expose The Port Using [Ngrok](https://ngrok.com).
 
 ```
-ngrok http 5000
+ngrok http 8000
 ```
-
-**N.B** Replace 5000 With Your Own PORT If You're Using Different Port Number. 
 
 Sample Request Using [cURL](https://curl.se/)
 
@@ -185,7 +183,20 @@ pytest test_server.py
 
 To Run TimeServer In [Docker](https://www.docker.com) Container Follow This Steps.
 
+## 🐳 Build Docker Image
 
+> [!NOTE]
+> Before building docker image make sure Docker instance is running by typing this command:
+>
+> ```bash
+> docker stats
+> ```
+>
+> If it's running, you will see the list of running containers. otherwise you’ll see an error like this:
+>
+> ```
+> error during connect: Get "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.50/containers/json": open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+> ```
 
 Build Docker Image
 
@@ -193,7 +204,7 @@ Build Docker Image
 docker build -t timeserver .
 ```
 
-Run The Server
+Run The Docker Image
 
 ```
 docker run -p 8000:8000 timeserver
