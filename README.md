@@ -68,7 +68,7 @@ git clone https://github.com/BirukBelihu/TimeServer.git
 Go Inside The Project
 
 ```
-cd TimeServer
+cd TimeServer/src
 ```
 
 ### Set up Python virtual environment(I recommend using [uv](https://github.com/astral-sh/uv) for lightning speed)
@@ -105,7 +105,7 @@ pip install -r requirements.txt
 Start The Time Server
 
 ```
-python main.py
+python app.py
 ```
 
 If You're Calling The API From External Clients(Android Or Web) Don't Forget To Expose The Port Using [Ngrok](https://ngrok.com).
@@ -116,7 +116,7 @@ ngrok http 5000
 
 **N.B** Replace 5000 With Your Own PORT If You're Using Different Port Number. 
 
-Sample Request Using **[cURL](https://curl.se/)**
+Sample Request Using [cURL](https://curl.se/)
 
 ```
 curl http://IP_ADDRESS:PORT/api/v1/time/current/zone?timeZone=Africa/Addis_Ababa
