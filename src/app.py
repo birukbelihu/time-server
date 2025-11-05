@@ -1,28 +1,31 @@
 from datetime import datetime
 import pytz
-from flask import Flask, redirect, url_for, request, jsonify
+from fastapi import FastAPI, Query, HTTPException
+from fastapi.responses import JSONResponse, RedirectResponse
 
-app = Flask(__name__)
+app = FastAPI(
+    title="TimeServer",
+    description="A Simple Time API to get real-time time information without any third-party API.",
+    version="1.2.0",
+)
 
+@app.get("/", include_in_schema=False)
+async def home():
+    """Redirect to /api/v1/time/current/zone"""
+    return RedirectResponse(url="/api/v1/time/current/zone")
 
-@app.route("/")
-def home():
-    return redirect(url_for("get_current_time"))
+@app.get("/api/v1/status", summary="Check API health")
+async def health():
+    return {"status": "TimeServer is running"}
 
-
-@app.route("/api/v1/status")
-def health():
-    return jsonify({"status": "TimeServer Is Running"}), 200
-
-
-@app.route("/api/v1/time/current/zone", methods=["GET"])
-def get_current_time():
-    time_zone = request.args.get("timeZone", "UTC")
-
+@app.get("/api/v1/time/current/zone", summary="Get current time for a timezone")
+async def get_current_time(
+    time_zone: str = Query("UTC", description="Timezone, e.g. 'Africa/Addis_Ababa'")
+):
     try:
         timezone = pytz.timezone(time_zone)
     except pytz.UnknownTimeZoneError:
-        return jsonify({"error": "Unknown Time Zone Provided"}), 400
+        raise HTTPException(status_code=400, detail="Unknown Time Zone Provided")
 
     current_time = datetime.now(timezone)
 
@@ -40,13 +43,17 @@ def get_current_time():
         "timeZone": str(timezone),
         "dayOfWeek": current_time.strftime("%A"),
     }
-    return jsonify(response)
 
+    return JSONResponse(content=response)
 
-@app.route("/api/v1/time/current/zone/availableTimeZones", methods=["GET"])
-def get_available_time_zones():
-    return jsonify(pytz.all_timezones)
+@app.get("/api/v1/time/current/zone/availableTimeZones", summary="List all available time zones")
+async def get_available_time_zones():
+    return JSONResponse(content=pytz.all_timezones)
 
+@app.exception_handler(404)
+async def not_found(_, __):
+    return JSONResponse(content={"error": "Endpoint not found"}, status_code=404)
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+@app.exception_handler(500)
+async def server_error(_, exc):
+    return JSONResponse(content={"error": "Internal Server Error", "details": str(exc)}, status_code=500)

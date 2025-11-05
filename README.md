@@ -6,7 +6,7 @@
 
 ## Time Server
 
-A Simple [Flask](https://flask.palletsprojects.com/) Time API to get real-time time information without any third-party API.
+A Simple Time API to get real-time time information without any third-party API.
 
 ---
 
@@ -125,7 +125,7 @@ ngrok http 5000
 Sample Request Using [cURL](https://curl.se/)
 
 ```
-curl http://IP_ADDRESS:PORT/api/v1/time/current/zone?timeZone=Africa/Addis_Ababa
+curl http://127.0.0.1:8000/api/v1/time/current/zone?timeZone=Africa/Addis_Ababa
 ```
 
 Response
@@ -151,7 +151,7 @@ Response
 Get All The Available Time Zones
 
 ```
-curl http://192.168.1.3:5000/api/v1/time/current/zone/availabletimeZones
+curl http://127.0.0.1:8000/api/v1/time/current/zone/availabletimeZones
 ```
 
 Response
@@ -174,7 +174,7 @@ Response
 Get Server Status
 
 ```
- http://IP_ADDRESS:PORT/api/v1/status
+ http://127.0.0.1:8000/api/v1/status
 ```
 
 Run Tests Using Pytest
