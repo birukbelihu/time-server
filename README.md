@@ -76,7 +76,7 @@ cd time-server
 ### With uv
 
 ```bash
-uv venv .venv
+uv venv
 ```
 
 ### With Python
