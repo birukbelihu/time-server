@@ -29,13 +29,11 @@ A Simple Time API to get real-time time information without any third-party API'
 
 ## Usage
 
-TimeServer Is Live On Render
-
-[TimeServer](https://timeserver-y2yg.onrender.com/docs)
+Check the [documentation.](https://timeserver-y2yg.onrender.com/docs)
 
 ## Running
 
-To get started with Time Server on your local machine, follow these steps:
+To get started with Time Server locally on your machine, follow these steps:
 
 ## 🛠️ Prerequisites
 
