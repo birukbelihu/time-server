@@ -9,23 +9,25 @@ app = FastAPI(
     version="1.2.0",
 )
 
+
 @app.get("/", include_in_schema=False)
 async def home():
-    """Redirect to /api/v1/time/current/zone"""
     return RedirectResponse(url="/api/v1/time/current/zone")
+
 
 @app.get("/api/v1/status", summary="Check API health")
 async def health():
     return {"status": "TimeServer is running"}
 
+
 @app.get("/api/v1/time/current/zone", summary="Get current time for a timezone")
 async def get_current_time(
-    time_zone: str = Query("UTC", description="Timezone, e.g. 'Africa/Addis_Ababa'")
+    time_zone: str = Query("UTC", alias="timeZone", description="Timezone, e.g. 'Africa/Addis_Ababa'"),
 ):
     try:
         timezone = pytz.timezone(time_zone)
     except pytz.UnknownTimeZoneError:
-        raise HTTPException(status_code=400, detail="Unknown Time Zone Provided")
+        raise HTTPException(status_code=404, detail="Unknown Time Zone Provided")
 
     current_time = datetime.now(timezone)
 
@@ -40,20 +42,28 @@ async def get_current_time(
         "dateTime": current_time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "date": current_time.strftime("%d/%m/%Y"),
         "time": current_time.strftime("%H:%M"),
-        "timeZone": str(timezone),
+        "timeZone": time_zone,
         "dayOfWeek": current_time.strftime("%A"),
     }
 
     return JSONResponse(content=response)
 
-@app.get("/api/v1/time/current/zone/availableTimeZones", summary="List all available time zones")
+
+@app.get(
+    "/api/v1/time/current/zone/availableTimeZones",
+    summary="List all available time zones",
+)
 async def get_available_time_zones():
     return JSONResponse(content=pytz.all_timezones)
+
 
 @app.exception_handler(404)
 async def not_found(_, __):
     return JSONResponse(content={"error": "Endpoint not found"}, status_code=404)
 
+
 @app.exception_handler(500)
 async def server_error(_, exc):
-    return JSONResponse(content={"error": "Internal Server Error", "details": str(exc)}, status_code=500)
+    return JSONResponse(
+        content={"error": "Internal Server Error", "details": str(exc)}, status_code=500
+    )

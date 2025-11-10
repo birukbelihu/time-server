@@ -1,12 +1,12 @@
-![GitHub Repo stars](https://img.shields.io/github/stars/BirukBelihu/Cody)
-![GitHub forks](https://img.shields.io/github/forks/BirukBelihu/Cody)
-![GitHub issues](https://img.shields.io/github/issues/BirukBelihu/Cody)
-![GitHub license](https://img.shields.io/github/license/BirukBelihu/Cody)
+![GitHub Repo stars](https://img.shields.io/github/stars/BirukBelihu/time-server)
+![GitHub forks](https://img.shields.io/github/forks/BirukBelihu/time-server)
+![GitHub issues](https://img.shields.io/github/issues/BirukBelihu/time-server)
+![GitHub license](https://img.shields.io/github/license/BirukBelihu/time-server)
 
 
 ## Time Server
 
-A Simple Time API to get real-time time information without any third-party API.
+A Simple Time API to get real-time time information without any third-party API's.
 
 ---
 
@@ -23,7 +23,7 @@ A Simple Time API to get real-time time information without any third-party API.
   - Year
   - Date & Many More
 - Supports 500+ World Time Zones
-- Can be easily integrated with Android, Web, or any project via a simple HTTP request.
+- Can be easily integrated with Android, Web, or any project via a simple HTTP API.
 
 ---
 
@@ -31,7 +31,7 @@ A Simple Time API to get real-time time information without any third-party API.
 
 TimeServer Is Live On Render
 
-[TimeServer](https://timeserver-y2yg.onrender.com)
+[TimeServer](https://timeserver-y2yg.onrender.com/docs)
 
 ## Running
 
@@ -108,10 +108,10 @@ Go Inside The Source Folder
 cd src
 ```
 
-Start The Time Server
+Start The Time Server(For Development)
 
 ```
-python app.py
+fastapi dev main.py
 ```
 
 If You're Calling The API From External Clients(Android Or Web) Don't Forget To Expose The Port Using [Ngrok](https://ngrok.com).
@@ -178,7 +178,7 @@ Get Server Status
 Run Tests Using Pytest
 
 ```
-pytest test_server.py
+pytest timeserver_test.py
 ```
 
 To Run TimeServer In [Docker](https://www.docker.com) Container Follow This Steps.
